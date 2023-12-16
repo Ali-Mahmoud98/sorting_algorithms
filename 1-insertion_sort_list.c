@@ -33,7 +33,7 @@ void insertion_sort_list(listint_t **list)
 			/* Update the head of the list if needed */
 			if (temp->prev == NULL)
 				*list = temp;
-			print_list(*list);
+			print_list((const listint_t *)*list);
 		}
 	}
 }
