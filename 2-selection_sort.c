@@ -1,4 +1,9 @@
 #include "sort.h"
+/**
+ * swap_nums - function that swaps 2 numbers.
+ * @num1: pointer to int.
+ * @num2: pointer to int.
+*/
 void swap_nums(int *num1, int *num2)
 {
 	*num1 = *num1 ^ *num2;
