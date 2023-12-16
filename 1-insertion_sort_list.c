@@ -24,15 +24,15 @@ void insertion_sort_list(listint_t **list)
 			/* Swap nodes if the current node's */
 			/* value is less than the previous node's value */
 			if (temp->next != NULL)
-                temp->next->prev = temp->prev;
-            temp->prev->next = temp->next;
-            temp->next = temp->prev;
-            temp->prev = temp->prev->prev;
-            temp->next->prev = temp;
+				temp->next->prev = temp->prev;
+			temp->prev->next = temp->next;
+			temp->next = temp->prev;
+			temp->prev = temp->prev->prev;
+			temp->next->prev = temp;
 
 			/* Update the head of the list if needed */
 			if (temp->prev == NULL)
-                *list = temp;
+				*list = temp;
 			print_list(*list);
 		}
 		current = current->next;
