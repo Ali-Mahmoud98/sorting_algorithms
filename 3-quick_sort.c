@@ -1,4 +1,17 @@
 #include "sort.h"
+#include <stdio.h>
+/**
+ * swap_numbers - swap two numbers.
+ * @num1: int.
+ * @num2: int.
+*/
+void swap_numbers(int *num1, int *num2)
+{
+	int tmp = *num1;
+
+	*num1 = *num2;
+	*num2 = tmp;
+}
 /**
  * lomuto_partition - Lomuto partition scheme for quicksort.
  *
@@ -17,15 +30,25 @@ int lomuto_partition(int *array, size_t size, int low, int high)
 {
 	int pivot = array[high];
 	int i = (low - 1);
+	int j;
 
-	for (int j = low; j <= high; j++) {
-		if (array[j] < pivot) {
+	for (j = low; j < high; j++)
+	{
+		if (array[j] < pivot)
+		{
 			i++;
-			swap_nums(array[i], array[j]);
-			print_array(array, size);
+			if (array[i] != array[j])
+			{
+				swap_numbers(&array[i], &array[j]);
+				print_array(array, size);
+			}
 		}
 	}
-	swap_nums(array[i + 1], array[high]);
+	if (array[i + 1] != array[high])
+	{
+		swap_numbers(&array[i + 1], &array[high]);
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 /**
@@ -37,13 +60,13 @@ int lomuto_partition(int *array, size_t size, int low, int high)
  * @low: The starting index of the subarray.
  * @high: The ending index of the subarray.
  */
-void quick_sort_Helper(int *array, size_t size ,int low, int high)
+void quick_sort_Helper(int *array, size_t size, int low, int high)
 {
 	int part;
 
 	if (low < high)
 	{
-		part = lomuto_partition(array, size,low, high);
+		part = lomuto_partition(array, size, low, high);
 		quick_sort_Helper(array, size, low, part - 1);
 		quick_sort_Helper(array, size, part + 1, high);
 	}
@@ -58,5 +81,5 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	quick_sort_Helper(array, size, 0, size - 1);
+	quick_sort_Helper(array, size, 0, (size - 1));
 }
