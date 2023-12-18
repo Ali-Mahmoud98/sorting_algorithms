@@ -3,6 +3,9 @@
 
 #include <stdlib.h>
 
+#define FORWARD_SWAP	1
+#define BACKWARD_SWAP	0
+
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -32,6 +35,7 @@ void shell_sort(int *array, size_t size);
 /********************** Start LIST Methods **********************/
 void print_list(const listint_t *list);
 void insertion_sort_list(listint_t **list);
+void cocktail_sort_list(listint_t **list);
 /********************** End ARRAY Methods **********************/
 
 #endif
