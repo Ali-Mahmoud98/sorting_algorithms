@@ -42,43 +42,43 @@ void swap_nodes2(listint_t **list, listint_t **node1, listint_t *node2)
 */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *start, *end;
-	listint_t *helper_ptr = *list;
-	int swapped = 1;
+    if (list == NULL || *list == NULL || (*list)->next == NULL)
+        return;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return;
+    int swapped = 1;
+    listint_t *start, *end, *helper_ptr;
 
-	end = NULL;
-	while (swapped)
-	{
-		swapped = 0;
-		for (start = helper_ptr; start != end; start = start->next)
-		{
-			if (!start->next)
-				break;
-			if (start->n > start->next->n)
-			{
-				swap_nodes2(list, &start, (start->next));
-				print_list((const listint_t *)*list);
-				swapped = 1;
-			}
-		}
-		if (!swapped)
-			break;
-		swapped = 0;
-		for (end = start->prev; end != helper_ptr; end = end->prev)
-		{
-			if (!end->prev)
-				break;
-			if (end->n < end->prev->n)
-			{
-				swap_nodes2(list, &end, (end->prev));
-				print_list((const listint_t *)*list);
-				swapped = 1;
-			}
-		}
-		end = start->prev;
-		helper_ptr = helper_ptr->next;
-	}
+    while (swapped)
+    {
+        swapped = 0;
+        for (start = *list; start != end; start = start->next)
+        {
+            if (!start->next)
+                break;
+            if (start->n > start->next->n)
+            {
+                swap_nodes2(list, &start, start->next);
+                print_list((const listint_t *)*list);
+                swapped = 1;
+            }
+        }
+
+        if (!swapped)
+            break;
+
+        swapped = 0;
+        for (end = start->prev; end != helper_ptr; end = end->prev)
+        {
+            if (!end->prev)
+                break;
+            if (end->n < end->prev->n)
+            {
+                swap_nodes2(list, &end, end->prev);
+                print_list((const listint_t *)*list);
+                swapped = 1;
+            }
+        }
+
+        helper_ptr = start;
+    }
 }
