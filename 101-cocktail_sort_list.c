@@ -78,7 +78,7 @@ void cocktail_sort_list(listint_t **list)
 				swapped = 1;
 			}
 		}
+        helper_ptr = end->next;
 		end = start->prev;
-		helper_ptr = helper_ptr->next;
 	}
 }
