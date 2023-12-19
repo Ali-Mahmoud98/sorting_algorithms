@@ -9,6 +9,7 @@
 void counting_sort(int *array, size_t size)
 {
 	size_t i;
+	int x;
 	int max = array[0];
 	int *counting_array, *sorted_array;
 
@@ -29,12 +30,13 @@ void counting_sort(int *array, size_t size)
 	}
 	for (i = 0; i < size; i++)
 		counting_array[array[i]]++;
-	for (i = 0; i < (size_t)(max + 1); i++)
+	for (i = 1; i < (size_t)(max + 1); i++)
 		counting_array[i] += counting_array[i - 1];
 	print_array(counting_array, max + 1);
 	for (i = 0; i < size; i++)
 	{
-		sorted_array[counting_array[array[i]] - 1] = array[i];
+		x = (array[i] == 0) ? 0 : 1; 
+		sorted_array[counting_array[array[i]] - x] = array[i];
 		counting_array[array[i]]--;
 	}
 	for (i = 0; i < size; i++)
